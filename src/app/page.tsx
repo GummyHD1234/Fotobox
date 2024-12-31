@@ -93,6 +93,7 @@ export default function Home() {
 
   const [showContactForm, setShowContactForm] = useState(false)
   const [showHotkeyModal, setShowHotkeyModal] = useState(false)
+  const [countdown, setCountdown] = useState<number | null>(null)
 
   const [savedPhotos, setSavedPhotos] = useState<SavedPhotos>({
     id: generateUniqueId(),
@@ -238,7 +239,23 @@ export default function Home() {
     }))
   }
 
-  const handleCapture = () => {
+  const startCountdown = () => {
+    setCountdown(5)
+    const interval = setInterval(() => {
+      setCountdown(prev => {
+        if (prev === null || prev <= 1) {
+          clearInterval(interval)
+          if (prev === 1) {
+            handleCapturePhoto()
+          }
+          return null
+        }
+        return prev - 1
+      })
+    }, 1000)
+  }
+
+  const handleCapturePhoto = () => {
     if (!videoRef.current) return
 
     // Create a canvas with 4:6 aspect ratio
@@ -277,6 +294,14 @@ export default function Home() {
       const imageData = canvas.toDataURL('image/jpeg', 0.95)
       setCapturedImage(imageData)
     }
+  }
+
+  const handleCapture = () => {
+    if (capturedImage) {
+      setCapturedImage(null)
+      return
+    }
+    startCountdown()
   }
 
   const handlePrint = () => {
@@ -417,11 +442,7 @@ export default function Home() {
 
       switch (event.key.toLowerCase()) {
         case HOTKEYS.capture.key:
-          if (!capturedImage) {
-            handleCapture()
-          } else {
-            setCapturedImage(null) // Neues Foto ermöglichen
-          }
+          handleCapture()
           break
         case HOTKEYS.save.key:
           if (capturedImage) {
@@ -509,6 +530,18 @@ export default function Home() {
                 className="relative bg-black rounded-lg overflow-hidden mb-4"
                 style={{ aspectRatio: `${PRINT_SIZES.width / PRINT_SIZES.height}` }}
               >
+                {countdown !== null && (
+                  <div className="absolute inset-0 z-10 bg-black/50 flex items-center justify-center">
+                    <div 
+                      className="text-8xl font-bold text-white animate-[countdown_1s_ease-in-out]"
+                      style={{
+                        animation: 'countdown 1s ease-in-out infinite',
+                      }}
+                    >
+                      {countdown}
+                    </div>
+                  </div>
+                )}
                 {capturedImage ? (
                   <img
                     src={capturedImage}
