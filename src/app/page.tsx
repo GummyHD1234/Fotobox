@@ -94,22 +94,28 @@ export default function Home() {
   const [showContactForm, setShowContactForm] = useState(false)
   const [showHotkeyModal, setShowHotkeyModal] = useState(false)
 
-  const [savedPhotos, setSavedPhotos] = useState<SavedPhotos>(() => {
-    // Versuche gespeicherte Fotos aus dem localStorage zu laden
+  const [savedPhotos, setSavedPhotos] = useState<SavedPhotos>({
+    id: generateUniqueId(),
+    photos: [],
+    printedPhotos: 0,
+    createdAt: new Date().toISOString()
+  })
+
+  // Load saved photos from localStorage on client side only
+  useEffect(() => {
     const saved = localStorage.getItem('savedPhotos')
     if (saved) {
-      return JSON.parse(saved)
+      setSavedPhotos(JSON.parse(saved))
+    } else {
+      const newCollection = {
+        id: generateUniqueId(),
+        photos: [],
+        printedPhotos: 0,
+        createdAt: new Date().toISOString()
+      }
+      localStorage.setItem('savedPhotos', JSON.stringify(newCollection))
     }
-    // Erstelle neue Sammlung wenn keine existiert
-    const newCollection = {
-      id: generateUniqueId(),
-      photos: [],
-      printedPhotos: 0,
-      createdAt: new Date().toISOString()
-    }
-    localStorage.setItem('savedPhotos', JSON.stringify(newCollection))
-    return newCollection
-  })
+  }, [])
 
   // Generiere eine eindeutige ID für die Fotosammlung
   function generateUniqueId() {
