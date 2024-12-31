@@ -51,7 +51,7 @@ interface ContactInfo {
 const PRICES = {
   base: 75,
   print: 45,
-  premium: 12
+  premium: 35
 }
 
 // Hotkey Definitionen
@@ -736,7 +736,7 @@ export default function Home() {
                     <div className="space-y-0.5">
                       <Label className="text-base">Premium-Upgrade</Label>
                       <p className="text-sm text-muted-foreground">
-                        Erweiterte Accessoires (+ €{PRICES.premium})
+                        Erweiterte Accessoires + Fotobuch (+ €{PRICES.premium})
                       </p>
                     </div>
                     <Switch
@@ -749,6 +749,8 @@ export default function Home() {
                       <p>• Hochwertige Requisiten</p>
                       <p>• Premium Accessoires</p>
                       <p>• Exklusive Designs</p>
+                      <p>• Digitaler Download in hoher Auflösung</p>
+                      <p>• Hochwertiges Fotobuch (20 Seiten)</p>
                     </div>
                   )}
                 </div>
