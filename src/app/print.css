@@ -1,0 +1,24 @@
+@media print {
+  /* Hide everything except the captured image */
+  body * {
+    visibility: hidden;
+  }
+
+  img[alt="Captured"] {
+    visibility: visible;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  /* Hide controls and other UI elements */
+  .controls,
+  button,
+  select,
+  label {
+    display: none !important;
+  }
+} 

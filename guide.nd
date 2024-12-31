@@ -1,0 +1,38 @@
+follw thes instructions closely
+set up next.js and shadcn/ui
+Erstelle eine Next.js-Webapp für eine Fotobox-Software mit den folgenden Funktionen und Anforderungen:
+
+Kamera-Zugriff mit Auswahlmenü:
+
+Die Webapp soll Zugriff auf alle verfügbaren Kameras des Geräts haben.
+Der Benutzer kann die gewünschte Kamera aus einem Dropdown-Menü oder einer Liste auswählen, ähnlich wie bei Microsoft Teams.
+Das Menü soll automatisch die verfügbaren Kameras erkennen und anzeigen (z. B. Front- und Rückkamera bei Mobilgeräten oder externe Kameras bei Laptops/Desktops).
+Foto-Optionen:
+
+Nach der Aufnahme eines Fotos sollen zwei Optionen angezeigt werden:
+Speichern: Das Bild wird in einem ausgewählten Verzeichnis gespeichert.
+Drucken: Das Druckmenü des Browsers wird geöffnet.
+Drucken-Funktionalität:
+
+Beim Klicken auf die Schaltfläche "Drucken" soll das Druckmenü des Browsers wie bei einem Druck auf "Strg+P" ausgelöst werden.
+Erweiterte Einstellungen für die Kamera:
+
+Optionen wie:
+Auflösungseinstellungen (z. B. 720p, 1080p, etc.).
+Blitzoptionen (falls die Kamera diese Funktion unterstützt).
+Helligkeit oder andere einfache Bildbearbeitungsparameter vor der Aufnahme.
+Benutzeroberfläche:
+
+Die App soll minimalistisch, übersichtlich und einfach zu bedienen sein.
+Das Kamera-Auswahlmenü sowie die Foto-Optionen sollen prominent und intuitiv gestaltet sein.
+Die Benutzeroberfläche soll responsive sein und auf Mobilgeräten, Tablets und Desktops gut funktionieren.
+Technische Umsetzung:
+
+Nutze die WebRTC-API, um alle verfügbaren Kameras aufzulisten und zwischen ihnen zu wechseln.
+Implementiere die window.print()-API, um das Druckmenü zu öffnen.
+Das Speichern erfolgt lokal oder über einen definierten Speicherpfad (z. B. in einem Download-Ordner).
+Zusätzliche Anforderungen:
+
+Responsives Design für verschiedene Bildschirmgrößen.
+Möglichkeit, Farben und Branding der App leicht anzupassen.
+Die App soll so gestaltet sein, dass neue Kamera-Funktionen leicht hinzugefügt werden können.
